@@ -1,0 +1,125 @@
+.title {
+    color: red;
+}
+
+body {
+    background-color: black;
+}
+
+.bgi::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 1);
+    z-index: -1;
+    
+}
+
+.background-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 1;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.sparta-logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    color: red;
+}
+
+.search-box {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.movie-search-input {
+    padding: 8px;
+    width: 200px;
+    height: 30px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+.search-button {
+    padding: 8px 15px;
+    height: 30px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 15px;
+    line-height: 1;
+
+}
+
+.search-button:hover {
+    background-color: red;
+}
+
+.default-ltr-cache-jpuyb8.e9eyrqp8 {
+    font-size: 55px;
+}
+
+.default-ltr-cache-10i4ild.e9eyrqp7 {
+    font-size: 30px;
+}
+
+.main {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(4, 280px);
+    grid-auto-rows: auto;
+
+    grid-column-gap: 80px;
+    grid-row-gap: 190px;
+
+    overflow: auto;
+
+    padding-top: 50px;
+
+    
+}
+
+.card {
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+    padding: 10px;
+    color: white;
+    border: 1px solid red;
+    background-color: transparent;
+}
+
+.poster {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.title {
+    font-size: 50px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
