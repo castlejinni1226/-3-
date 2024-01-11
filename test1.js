@@ -127,16 +127,16 @@ function renderMovies(movies) {
 
 //모달 관련
 const modal = document.querySelector(".modal");
-const modalBackground = modal.querySelector(".modal__background");
+const modalBackground = modal.querySelector(".modalBackground");
 
 function displayModal(movie) {
   // 모달 엘리먼트에 접근
   const modal = document.querySelector(".modal");
-  const modalContent = modal.querySelector(".modal__content");
+  const modalContent = modal.querySelector(".modalContent");
 
   // 모달 내용을 클릭된 영화의 정보로 업데이트
   modalContent.innerHTML = `
-    <div class="modal__details">
+    <div class="modalDetails">
       <h2>${movie.title} (${movie.original_title})</h2>
       <p>평점: ${Math.round(movie.vote_average * 10) / 10}</p>
       <hr>
@@ -146,6 +146,8 @@ function displayModal(movie) {
 
   // 모달을 보이게 설정
   modal.classList.remove("hidden");
+  // 애니메이션을 위해 fadein 클래스 추가
+  modalContent.classList.add("fadein");
 }
 
 // 모달 창을 닫는 함수
