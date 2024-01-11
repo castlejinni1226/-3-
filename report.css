@@ -1,125 +1,176 @@
 .title {
-    color: red;
+  color: red;
 }
 
 body {
-    background-color: black;
+  background-color: black;
 }
 
 .bgi::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 1);
-    z-index: -1;
-    
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(0, 0, 0);
+  z-index: -1;
 }
 
 .background-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    z-index: 1;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
-    font-size: 2.5em;
-    font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 1;
+  text-shadow: 2px 2px 4px rgb(0, 0, 0);
+  font-size: 2.5em;
+  font-weight: bold;
 }
 
 .sparta-logo {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 30px;
-    font-weight: bold;
-    color: red;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  color: red;
 }
-
+.plus {
+}
 .search-box {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .movie-search-input {
-    padding: 8px;
-    width: 200px;
-    height: 30px;
-    font-size: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-right: 5px;
+  padding: 8px;
+  width: 200px;
+  height: 30px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 5px;
 }
 
 .search-button {
-    padding: 8px 15px;
-    height: 30px;
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: 15px;
-    line-height: 1;
-
+  padding: 8px 15px;
+  height: 30px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 15px;
+  line-height: 1;
 }
 
 .search-button:hover {
-    background-color: red;
+  background-color: red;
 }
 
 .default-ltr-cache-jpuyb8.e9eyrqp8 {
-    font-size: 55px;
+  font-size: 55px;
 }
 
 .default-ltr-cache-10i4ild.e9eyrqp7 {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 .main {
-    width: 100%;
-
-    display: grid;
-    grid-template-columns: repeat(4, 280px);
-    grid-auto-rows: auto;
-
-    grid-column-gap: 80px;
-    grid-row-gap: 190px;
-
-    overflow: auto;
-
-    padding-top: 50px;
-
-    
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 280px);
+  grid-auto-rows: auto;
+  grid-column-gap: 80px;
+  grid-row-gap: 190px;
+  overflow: auto;
+  padding-top: 50px;
 }
 
+/* .card {
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+  padding: 10px;
+  color: white;
+  border: 1px solid red;
+  background-color: transparent;
+} */
+
 .card {
-    display: flex;
-    width: 300px;
-    flex-direction: column;
-    padding: 10px;
-    color: white;
-    border: 1px solid red;
-    background-color: transparent;
+  flex: 0 0 auto;
+  width: 250px;
+  height: 470px;
+  margin-right: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  border: 1px solid red;
+  overflow: hidden;
+  color: white;
+  background-color: transparent;
 }
 
 .poster {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 .title {
-    font-size: 50px;
-    margin-bottom: 10px;
-    text-align: center;
-    font-weight: bold;
+  font-size: 50px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
 }
 
+section {
+  width: 100%;
+  overflow-x: scroll;
+}
+section ::-webkit-scrollbar {
+  display: none;
+}
+section .content-list {
+  margin-bottom: 3rem;
+  position: relative;
+  overflow: auto;
+  scroll-snap-type: x mandatory;
+}
+section .content-list h1 {
+  color: white;
+}
+
+section .content-list .slider {
+  display: flex;
+  gap: 0.5rem;
+
+  scroll-behavior: smooth;
+  transition: all 500ms cubic-bezier(0.25, 0.25, 0.75, 0.75); /* linear */
+  transition-timing-function: cubic-bezier(0.25, 0.25, 0.75, 0.75); /* linear */
+}
+
+section .content-list .prev-arrow {
+  transform: rotateY(180deg);
+}
+section .content-list .prev {
+  font-size: 3rem;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-10px);
+  cursor: pointer;
+}
+section .content-list .next {
+  font-size: 3rem;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-10px);
+  cursor: pointer;
+}
