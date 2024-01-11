@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@500&display=swap');
+
+*{
+  font-family: 'Nanum Pen Script', cursive;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
 .title {
   color: red;
 }
@@ -12,11 +19,9 @@ body {
 }
 
 .main_background_shadow {
-  background-image: linear-gradient(
-    rgba(0, 0, 0, 0.9) 0,
-    rgba(0, 0, 0, 0.9) 60%,
-    rgba(0, 0, 0, 0.9) 100%
-  );
+  background-image: linear-gradient(rgba(0, 0, 0, 0.9) 0,
+      rgba(0, 0, 0, 0.9) 60%,
+      rgba(0, 0, 0, 0.9) 100%);
   position: absolute;
   height: 180%;
   top: 0;
@@ -43,12 +48,11 @@ body {
   position: absolute;
   top: 10px;
   left: 10px;
-  font-size: 30px;
+  font-size: 50px;
   font-weight: bold;
   color: red;
 }
-.plus {
-}
+
 .search-box {
   margin-top: 20px;
   display: flex;
@@ -119,11 +123,11 @@ body {
 .card {
   flex: 0 0 auto;
   width: 250px;
-  height: 430px;
-  margin-right: 20px;
+  height: auto;
+  margin-right: 60px;
+  margin-left: 40px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  border: 1px solid red;
   overflow: hidden;
   color: white;
   background-color: transparent;
@@ -135,25 +139,34 @@ body {
   object-fit: cover;
 }
 
-.title {
-  font-size: 50px;
-  margin-bottom: 10px;
+.p_title {
+  font-size: 25px;
   text-align: center;
-  font-weight: bold;
+  z-index: 1;
+  color: black;
+  text-shadow: -0.5px 0 white, 0 0.5px white, 0.5px 0 white, 0 -0.5px white;
+
+}
+
+.plus {
+  position: relative;
 }
 
 section {
   width: 100%;
 }
+
 section ::-webkit-scrollbar {
   display: none;
 }
+
 section .content-list {
   margin-bottom: 3rem;
   position: relative;
   overflow: auto;
   scroll-snap-type: x mandatory;
 }
+
 section .content-list h1 {
   color: white;
 }
@@ -163,29 +176,34 @@ section .content-list .slider {
   gap: 0.5rem;
 
   scroll-behavior: smooth;
-  transition: all 500ms cubic-bezier(0.25, 0.25, 0.75, 0.75); /* linear */
-  transition-timing-function: cubic-bezier(0.25, 0.25, 0.75, 0.75); /* linear */
+  transition: all 500ms cubic-bezier(0.25, 0.25, 0.75, 0.75);
+  /* linear */
+  transition-timing-function: cubic-bezier(0.25, 0.25, 0.75, 0.75);
+  /* linear */
 }
 
 section .content-list .prev-arrow {
   transform: rotateY(180deg);
 }
+
 section .content-list .prev {
   font-size: 3rem;
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 10px;
   transform: translateY(-10px);
   cursor: pointer;
 }
+
 section .content-list .next {
   font-size: 3rem;
   position: absolute;
-  top: 50%;
+  top: 40%;
   right: 10px;
   transform: translateY(-10px);
   cursor: pointer;
 }
+
 i {
   color: white;
 }
