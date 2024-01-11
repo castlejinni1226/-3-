@@ -137,10 +137,14 @@ function displayModal(movie) {
   // 모달 내용을 클릭된 영화의 정보로 업데이트
   modalContent.innerHTML = `
     <div class="modalDetails">
-      <h2>${movie.title} (${movie.original_title})</h2>
-      <p>평점: ${Math.round(movie.vote_average * 10) / 10}</p>
+      <h2>${movie.title}</h2>
+      <h3>${movie.original_title}</h3>
+      <p>${movie.release_date}</p>
+      <img class="modalPoster" src="https://image.tmdb.org/t/p/original${movie.poster_path}" alt="${movie} poster">
       <hr>
       <p>${movie.overview}</p>
+      <hr>
+      <h2>리뷰</h2>
     </div>
   `;
 

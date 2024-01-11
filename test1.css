@@ -142,10 +142,27 @@ body {
   text-align: center;
   position: relative;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 4px;
   top: 0;
-  padding: 10px 25px;
-  width: 20%;
+  padding: 25px 25px;
+  width: 50%;
+  height: auto;
+}
+
+.modalPoster {
+  width: 35%;
+  height: auto;
+
+  background: #000; /*Change this to a background image or remove*/
+  box-shadow: 1px 1px 5px #333; /* Standard blur at 5px. Increase for more depth */
+  -webkit-box-shadow: 1px 1px 5px #333;
+  -moz-box-shadow: 1px 1px 5px #333;
+}
+
+/* 영제 흐릿하게 */
+.modalContent h3 {
+  font-size: 24px;
+  color: gray;
 }
 
 .hidden {
