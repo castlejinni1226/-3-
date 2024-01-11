@@ -128,6 +128,7 @@ function renderMovies(movies) {
 //모달 관련
 const modal = document.querySelector(".modal");
 const modalBackground = modal.querySelector(".modalBackground");
+let isOpen = false;
 
 function displayModal(movie) {
   // 모달 엘리먼트에 접근
@@ -168,6 +169,8 @@ function displayModal(movie) {
 
   // 모달을 보이게 설정
   modal.classList.remove("hidden");
+  isOpen = true;
+  console.log(isOpen);
   // 애니메이션을 위해 fadein 클래스 추가
   modalContent.classList.add("fadein");
 }
@@ -176,7 +179,15 @@ function displayModal(movie) {
 function closeModal() {
   const modal = document.querySelector(".modal");
   modal.classList.add("hidden");
+  isOpen = false;
 }
 
 // 모달 배경에 닫기 함수를 연결
 modalBackground.addEventListener("click", closeModal);
+
+// 모달 창이 열리면 뒷 내용 스크롤 방지
+if (isOpen) {
+  document.main.style.overflowY = "hidden";
+} else {
+  document.main.style.overflowY = "auto";
+}
