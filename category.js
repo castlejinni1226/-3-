@@ -33,3 +33,20 @@ function updateSlider() {
     console.log("Sliding stopped!");
   }
 }
+
+function disableWheelClick() {
+  // 특정 컨테이너 요소를 선택합니다. 아래는 ID가 'yourContainerId'인 경우입니다.
+  const container = document.querySelector(".slider");
+
+  // mousedown 이벤트를 추가하여 마우스 휠 클릭을 막습니다.
+  container.addEventListener("mousedown", function (event) {
+    if (event.button === 1) {
+      // 마우스 휠 클릭 버튼은 1입니다.
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  });
+}
+
+// 함수 호출
+disableWheelClick();

@@ -42,8 +42,8 @@ function createMovieCard(
   const imageElement = document.createElement("img");
   const plusContainer = document.createElement("div");
   const titleElement = document.createElement("div");
-  const otitleElement = document.createElement("div");
-  const starElement = document.createElement("div");
+  // const otitleElement = document.createElement("div");
+  //const starElement = document.createElement("div");
   const hrElement = document.createElement("hr");
   // const overviewElement = document.createElement("div");
 
@@ -51,8 +51,8 @@ function createMovieCard(
   imageElement.className = "poster";
   plusContainer.className = "plus";
   titleElement.className = "p_title";
-  otitleElement.className = "p-otitle";
-  starElement.className = "p_star";
+  // otitleElement.className = "p-otitle";
+  // starElement.className = "p_star";
   // overviewElement.className = "p_over";
 
   let round = Math.round(vote_average * 10) / 10;
@@ -60,12 +60,12 @@ function createMovieCard(
   imageElement.src = "https://image.tmdb.org/t/p/original" + poster_path;
 
   titleElement.textContent = title;
-  otitleElement.textContent = `(${otitle})`;
-  starElement.textContent = `평점 : ${round}`;
+  // otitleElement.textContent = `(${otitle})`;
+  // starElement.textContent = `평점 : ${round}`;
   // overviewElement.textContent = overview;
   plusContainer.appendChild(titleElement);
-  plusContainer.appendChild(otitleElement);
-  plusContainer.appendChild(starElement);
+  // plusContainer.appendChild(otitleElement);
+  // plusContainer.appendChild(starElement);
   plusContainer.appendChild(hrElement);
   // plusContainer.appendChild(overviewElement);
   movieContainer.appendChild(imageElement);
