@@ -23,7 +23,7 @@ fetch(
         movie.poster_path,
         movie.vote_average,
         movie.overview,
-        movie.id
+        movie
       );
       lcContainer.appendChild(movieCard);
     });
@@ -37,7 +37,7 @@ function createMovieCard(
   poster_path,
   vote_average,
   overview,
-  id
+  movie
 ) {
   const movieContainer = document.createElement("div");
   const imageElement = document.createElement("img");
@@ -75,7 +75,9 @@ function createMovieCard(
   // function handlePosterClick() {
   //   alert(`해당 영화의 ID : ${id}`);
   // }
-  imageElement.addEventListener("click", displayModal);
+
+  //movie 정보 전달
+  imageElement.addEventListener("click", () => displayModal(movie));
   return movieContainer;
 }
 
@@ -123,16 +125,34 @@ function renderMovies(movies) {
   });
 }
 
-//모달 관련 js
-const openButton = document.getElementById("openbtn");
+//모달 관련
 const modal = document.querySelector(".modal");
-const closeButton = modal.querySelector("button");
 const modalBackground = modal.querySelector(".modal__background");
 
-function displayModal() {
-  modal.classList.toggle("hidden");
+function displayModal(movie) {
+  // 모달 엘리먼트에 접근
+  const modal = document.querySelector(".modal");
+  const modalContent = modal.querySelector(".modal__content");
+
+  // 모달 내용을 클릭된 영화의 정보로 업데이트
+  modalContent.innerHTML = `
+    <div class="modal__details">
+      <h2>${movie.title} (${movie.original_title})</h2>
+      <p>평점: ${Math.round(movie.vote_average * 10) / 10}</p>
+      <hr>
+      <p>${movie.overview}</p>
+    </div>
+  `;
+
+  // 모달을 보이게 설정
+  modal.classList.remove("hidden");
 }
 
-// openButton.addEventListener("click", displayModal);
-closeButton.addEventListener("click", displayModal);
-modalBackground.addEventListener("click", displayModal);
+// 모달 창을 닫는 함수
+function closeModal() {
+  const modal = document.querySelector(".modal");
+  modal.classList.add("hidden");
+}
+
+// 모달 배경에 닫기 함수를 연결
+modalBackground.addEventListener("click", closeModal);
