@@ -62,7 +62,7 @@ function createMovieCard(
   titleElement.textContent = title;
   otitleElement.textContent = `(${otitle})`;
   starElement.textContent = `평점 : ${round}`;
-  overviewElement.textContent = overview;
+  // overviewElement.textContent = overview;
   plusContainer.appendChild(titleElement);
   plusContainer.appendChild(otitleElement);
   plusContainer.appendChild(starElement);
