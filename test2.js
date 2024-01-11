@@ -1,84 +1,84 @@
 const options = {
-    method: "GET",
-    headers: {
-        accept: "application/json",
-        Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlYjNhYWVlNWYxYWUyZWUwMjViZjAzYjYzZGM2M2Y1ZCIsInN1YiI6IjY1OTc2N2YxMGU2NGFmMzE5YThjMThlZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WFpcy72hzLFJG-KeQGphAp9eFXTwipQJRsQmfd19Gxg",
-    },
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlYjNhYWVlNWYxYWUyZWUwMjViZjAzYjYzZGM2M2Y1ZCIsInN1YiI6IjY1OTc2N2YxMGU2NGFmMzE5YThjMThlZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WFpcy72hzLFJG-KeQGphAp9eFXTwipQJRsQmfd19Gxg",
+  },
 };
 
 fetch(
-    "https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1",
-    options
+  "https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1",
+  options
 )
-    .then((response) => response.json())
-    .then((data) => {
-        const lcContainer = document.getElementById("main");
+  .then((response) => response.json())
+  .then((data) => {
+    const lcContainer = document.getElementById("main");
 
-        data.results.forEach((movie, index) => {
-            const movieCard = createMovieCard(
-                index,
-                movie.title,
-                movie.original_title,
-                movie.poster_path,
-                movie.vote_average,
-                movie.overview,
-                movie
-            );
-            lcContainer.appendChild(movieCard);
-        });
-    })
-    .catch((err) => console.error(err));
+    data.results.forEach((movie, index) => {
+      const movieCard = createMovieCard(
+        index,
+        movie.title,
+        movie.original_title,
+        movie.poster_path,
+        movie.vote_average,
+        movie.overview,
+        movie
+      );
+      lcContainer.appendChild(movieCard);
+    });
+  })
+  .catch((err) => console.error(err));
 
 function createMovieCard(
-    index,
-    title,
-    otitle,
-    poster_path,
-    vote_average,
-    overview,
-    movie
+  index,
+  title,
+  otitle,
+  poster_path,
+  vote_average,
+  overview,
+  movie
 ) {
-    const movieContainer = document.createElement("div");
-    const imageElement = document.createElement("img");
-    const plusContainer = document.createElement("div");
-    const titleElement = document.createElement("div");
-    const otitleElement = document.createElement("div");
-    const starElement = document.createElement("div");
-    const hrElement = document.createElement("hr");
-    const overviewElement = document.createElement("div");
+  const movieContainer = document.createElement("div");
+  const imageElement = document.createElement("img");
+  const plusContainer = document.createElement("div");
+  const titleElement = document.createElement("div");
+  const otitleElement = document.createElement("div");
+  const starElement = document.createElement("div");
+  const hrElement = document.createElement("hr");
+  const overviewElement = document.createElement("div");
 
-    movieContainer.className = "card";
-    imageElement.className = "poster";
-    plusContainer.className = "plus";
-    titleElement.className = "p_title";
-    otitleElement.className = "p-otitle";
-    starElement.className = "p_star";
-    overviewElement.className = "p_over";
+  movieContainer.className = "card";
+  imageElement.className = "poster";
+  plusContainer.className = "plus";
+  titleElement.className = "p_title";
+  otitleElement.className = "p-otitle";
+  starElement.className = "p_star";
+  overviewElement.className = "p_over";
 
-    let round = Math.round(vote_average * 10) / 10;
+  let round = Math.round(vote_average * 10) / 10;
 
-    imageElement.src = "https://image.tmdb.org/t/p/original" + poster_path;
+  imageElement.src = "https://image.tmdb.org/t/p/original" + poster_path;
 
-    titleElement.textContent = title;
-    otitleElement.textContent = `(${otitle})`;
-    starElement.textContent = `평점 : ${round}`;
-    overviewElement.textContent = overview;
-    plusContainer.appendChild(titleElement);
-    plusContainer.appendChild(otitleElement);
-    plusContainer.appendChild(starElement);
-    plusContainer.appendChild(hrElement);
-    plusContainer.appendChild(overviewElement);
-    movieContainer.appendChild(imageElement);
-    movieContainer.appendChild(plusContainer);
+  titleElement.textContent = title;
+  otitleElement.textContent = `(${otitle})`;
+  starElement.textContent = `평점 : ${round}`;
+  overviewElement.textContent = overview;
+  plusContainer.appendChild(titleElement);
+  plusContainer.appendChild(otitleElement);
+  plusContainer.appendChild(starElement);
+  plusContainer.appendChild(hrElement);
+  plusContainer.appendChild(overviewElement);
+  movieContainer.appendChild(imageElement);
+  movieContainer.appendChild(plusContainer);
 
-    // function handlePosterClick() {
-    //   alert(`해당 영화의 ID : ${id}`);
-    // }
+  // function handlePosterClick() {
+  //   alert(`해당 영화의 ID : ${id}`);
+  // }
 
-    //movie 정보 전달
-    imageElement.addEventListener("click", () => displayModal(movie));
-    return movieContainer;
+  //movie 정보 전달
+  imageElement.addEventListener("click", () => displayModal(movie));
+  return movieContainer;
 }
 
 // const sbtn = document.getElementById("sbtn");
@@ -92,7 +92,7 @@ function createMovieCard(
 // });
 
 {
-    /* <form class="search-form" onsubmit="search_movie(event)">
+  /* <form class="search-form" onsubmit="search_movie(event)">
       <input class="search-box" /> */
 }
 
@@ -108,21 +108,21 @@ function createMovieCard(
 //   : alert("검색결과가 없어용");
 
 function renderMovies(movies) {
-    const lcContainer = document.getElementById("main");
-    lcContainer.innerHTML = "";
+  const lcContainer = document.getElementById("main");
+  lcContainer.innerHTML = "";
 
-    movies.forEach((movie, index) => {
-        const movieCard = createMovieCard(
-            index + 1,
-            movie.title,
-            movie.original_title,
-            movie.poster_path,
-            movie.vote_average,
-            movie.overview,
-            movie.id
-        );
-        lcContainer.appendChild(movieCard);
-    });
+  movies.forEach((movie, index) => {
+    const movieCard = createMovieCard(
+      index + 1,
+      movie.title,
+      movie.original_title,
+      movie.poster_path,
+      movie.vote_average,
+      movie.overview,
+      movie.id
+    );
+    lcContainer.appendChild(movieCard);
+  });
 }
 
 //모달 관련
@@ -130,12 +130,12 @@ const modal = document.querySelector(".modal");
 const modalBackground = modal.querySelector(".modalBackground");
 
 function displayModal(movie) {
-    // 모달 엘리먼트에 접근
-    const modal = document.querySelector(".modal");
-    const modalContent = modal.querySelector(".modalContent");
+  // 모달 엘리먼트에 접근
+  const modal = document.querySelector(".modal");
+  const modalContent = modal.querySelector(".modalContent");
 
-    // 모달 내용을 클릭된 영화의 정보로 업데이트
-    modalContent.innerHTML = `
+  // 모달 내용을 클릭된 영화의 정보로 업데이트
+  modalContent.innerHTML = `
       <div class="modalDetails">
         <h2>${movie.title}</h2>
         <h3>${movie.original_title}</h3>
@@ -145,6 +145,7 @@ function displayModal(movie) {
         <p>${movie.overview}</p>
         <hr>
         <h2>리뷰</h2>
+        <div class = "review">
         <form class="row g-3">
         <div class="col-md-6">
         <label for="inputEmail4" class="form-label"></label>
@@ -158,22 +159,23 @@ function displayModal(movie) {
         <label for="inputAddress" class="form-label"></label>
         <input type="text" class="form-control" id="inputAddress" placeholder="여러분의 소중한 댓글을 입력해주세용">
         </div>
-        <button type="submit" class="btn btn-primary">등록하기</button>
+        <button id="reviewbtn" type="submit" class="btn btn-primary">등록하기</button>
         <div class="input-group input-group-lg">
+        </div>
         </div>
         </div>
     `;
 
-    // 모달을 보이게 설정
-    modal.classList.remove("hidden");
-    // 애니메이션을 위해 fadein 클래스 추가
-    modalContent.classList.add("fadein");
+  // 모달을 보이게 설정
+  modal.classList.remove("hidden");
+  // 애니메이션을 위해 fadein 클래스 추가
+  modalContent.classList.add("fadein");
 }
 
 // 모달 창을 닫는 함수
 function closeModal() {
-    const modal = document.querySelector(".modal");
-    modal.classList.add("hidden");
+  const modal = document.querySelector(".modal");
+  modal.classList.add("hidden");
 }
 
 // 모달 배경에 닫기 함수를 연결
