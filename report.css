@@ -144,7 +144,6 @@ body {
 
 section {
   width: 100%;
-  overflow-x: scroll;
 }
 section ::-webkit-scrollbar {
   display: none;
