@@ -34,7 +34,7 @@ function updateSlider() {
   }
 }
 
-function disableWheelClick() {
+function DisableWheelClick() {
   // 특정 컨테이너 요소를 선택합니다. 아래는 ID가 'yourContainerId'인 경우입니다.
   const container = document.querySelector(".slider");
 
@@ -49,4 +49,27 @@ function disableWheelClick() {
 }
 
 // 함수 호출
-disableWheelClick();
+DisableWheelClick();
+
+// topButton
+let mybutton = document.getElementById("btn-back-to-top");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function () {
+  ScrollFunction();
+};
+
+function ScrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+// When the user clicks on the button, scroll to the top of the document
+mybutton.addEventListener("click", backToTop);
+
+function backToTop() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
