@@ -66,10 +66,27 @@ function ScrollFunction() {
     mybutton.style.display = "none";
   }
 }
-// When the user clicks on the button, scroll to the top of the document
-mybutton.addEventListener("click", backToTop);
+// 버튼 클릭 시 스크롤 부드럽게
+mybutton.addEventListener("click", function () {
+  scrollToTop(800);
+});
 
-function backToTop() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
+function scrollToTop(duration) {
+  const start = window.pageYOffset;
+  const startTime =
+    "now" in window.performance ? performance.now() : new Date().getTime();
+
+  function scroll() {
+    const now =
+      "now" in window.performance ? performance.now() : new Date().getTime();
+    const time = Math.min(1, (now - startTime) / duration);
+
+    window.scrollTo(0, Math.ceil((1 - time) * start));
+
+    if (time < 1) {
+      requestAnimationFrame(scroll);
+    }
+  }
+
+  scroll();
 }
