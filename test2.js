@@ -145,6 +145,8 @@ function displayModal(movie) {
         <hr>
         <p>${movie.overview}</p>
         <hr>
+        </div>
+        <div>
         <h2>리뷰</h2>
         <div class = "review">
         <form class="row g-3">
@@ -162,6 +164,7 @@ function displayModal(movie) {
         </div>
         <button id="reviewbtn" type="submit" class="btn btn-primary">등록하기</button>
         <div class="input-group input-group-lg">
+        </div>
         </div>
         </div>
         </div>

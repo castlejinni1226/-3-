@@ -152,7 +152,14 @@ body {
   position: absolute;
 }
 
+.modalDetails{
+  width: 60%;
+  height: auto;
+
+}
+
 .modalContent {
+  display: flex;
   text-align: center;
   position: relative;
   background-color: white;
@@ -160,9 +167,12 @@ body {
   margin: 10% 0% 0% 0%;
   top: 0;
   padding: 25px 25px;
-  width: 50%;
+  width: 70%;
   height: auto;
   overflow-y: auto;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .modalPoster {
