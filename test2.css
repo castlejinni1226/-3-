@@ -1,0 +1,202 @@
+.title {
+  color: red;
+}
+
+body {
+  background-color: black;
+}
+
+.bgi::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 1);
+  z-index: -1;
+}
+
+.background-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+.sparta-logo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  color: red;
+}
+
+.search-box {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.movie-search-input {
+  padding: 8px;
+  width: 200px;
+  height: 30px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+.search-button {
+  padding: 8px 15px;
+  height: 30px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.search-button:hover {
+  background-color: red;
+}
+
+.default-ltr-cache-jpuyb8.e9eyrqp8 {
+  font-size: 55px;
+}
+
+.default-ltr-cache-10i4ild.e9eyrqp7 {
+  font-size: 30px;
+}
+
+.main {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(4, 280px);
+  grid-auto-rows: auto;
+
+  grid-column-gap: 80px;
+  grid-row-gap: 190px;
+
+  overflow: auto;
+
+  padding-top: 50px;
+}
+
+.card {
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+  padding: 10px;
+  color: white;
+  border: 1px solid red;
+  background-color: transparent;
+}
+
+.poster {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.title {
+  font-size: 50px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.review {
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding: 20px;
+  width: 90%;
+  margin: auto;
+}
+
+#reviewbtn {
+  width: auto;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+/* 모달 css */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modalBackground {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 200%;
+  position: absolute;
+}
+
+.modalContent {
+  text-align: center;
+  position: relative;
+  background-color: white;
+  border-radius: 4px;
+  margin: 10% 0% 0% 0%;
+  top: 0;
+  padding: 25px 25px;
+  width: 50%;
+  height: auto;
+  overflow-y: auto;
+}
+
+.modalPoster {
+  width: 35%;
+  height: auto;
+
+  background: #000; /*Change this to a background image or remove*/
+  box-shadow: 1px 1px 5px #333; /* Standard blur at 5px. Increase for more depth */
+  -webkit-box-shadow: 1px 1px 5px #333;
+  -moz-box-shadow: 1px 1px 5px #333;
+}
+
+/* 영제 흐릿하게 */
+.modalContent h3 {
+  font-size: 24px;
+  color: gray;
+}
+
+.hidden {
+  display: none;
+}
+
+/* 페이드인 애니메이션 */
+.modalContent.fadein {
+  animation: fadein 250ms ease-in-out;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
