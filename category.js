@@ -1,38 +1,37 @@
 // Add scrolling functionality
-const container = document.querySelector(".slider");
-const next = document.querySelector(".next");
-const prev = document.querySelector(".prev");
+const containerDivs = document.querySelectorAll(".slider");
+const nextDivs = document.querySelectorAll(".next");
+const prevDivs = document.querySelectorAll(".prev");
+let currentIndexs = [0, 0, 0];
 
-let currentIndex = 0;
-// 이전으로 가는 버튼 설정
-prev.addEventListener("click", () => {
-  if (currentIndex > 0) {
-    currentIndex--;
-    updateSlider();
-  }
-});
-// 다음으로 가는 버튼 설정
-next.addEventListener("click", () => {
-  if (currentIndex < container.children.length - 2) {
-    currentIndex++;
-    updateSlider();
-  }
-});
+for (let i = 0; i < containerDivs.length; i++) {
+  nextDivs[i].addEventListener("click", () => {
+    const container = containerDivs[i];
+    if (currentIndexs[i] < container.children.length - 2) {
+      currentIndexs[i] += 1;
+      updateSlider(container, currentIndexs[i]);
+    }
+  });
+
+  prevDivs[i].addEventListener("click", () => {
+    const container = containerDivs[i];
+    if (currentIndexs[i] > 0) {
+      currentIndexs[i] -= 1;
+      updateSlider(container, currentIndexs[i]);
+    }
+  })
+}
 
 // 슬라이더가 실행되도록 한다.
-function updateSlider() {
+function updateSlider(container, currIndex) {
   const slideWidth = container.children[0].offsetWidth;
   const maxTranslateValue = slideWidth * (container.children.length - 2); // 특정 값
-
-  const newTranslateValue = -currentIndex * slideWidth * 2;
-
+  const newTranslateValue = -currIndex * slideWidth * 4.5;
   if (Math.abs(newTranslateValue) < maxTranslateValue) {
     container.style.transform = `translateX(${newTranslateValue}px)`;
-  } else {
-    // 슬라이딩 진행하지 않게 하는 코드
-    console.log("Sliding stopped!");
   }
 }
+
 
 function disableWheelClick() {
   // 특정 컨테이너 요소를 선택합니다. 아래는 ID가 'yourContainerId'인 경우입니다.

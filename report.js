@@ -7,13 +7,12 @@ const options = {
   }
 };
 
-fetch(
-  "https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1",
-  options
-)
+fetch('https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=ko-KR&page=1&region=KR&sort_by=popularity.desc&with_original_language=ko'
+  , options)
+
   .then(response => response.json())
   .then(data => {
-    const lcContainer = document.getElementById("main");
+    // const lcContainer = document.getElementById("main");
     data.results.forEach((movie, index) => {
       const movieCard = createMovieCard(
         index,
@@ -24,10 +23,59 @@ fetch(
         movie.overview,
         movie.id
       );
-      lcContainer.appendChild(movieCard);
+      document.getElementById("main").appendChild(movieCard);
     });
   })
   .catch(err => console.error(err));
+
+fetch(
+  "https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1",
+  options
+)
+
+  .then(response => response.json())
+  .then(data => {
+    // const lcContainer = document.getElementById("main");
+    data.results.forEach((movie, index) => {
+      const movieCard = createMovieCard(
+        index,
+        movie.title,
+        movie.original_title,
+        movie.poster_path,
+        movie.vote_average,
+        movie.overview,
+        movie.id
+      );
+      document.getElementById("main2").appendChild(movieCard);
+    });
+  })
+  .catch(err => console.error(err));
+
+
+fetch(
+  'https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=ko-KR&page=1&sort_by=revenue.desc',
+  options)
+
+
+  .then(response => response.json())
+  .then(data => {
+    // const lcContainer = document.getElementById("main");
+    data.results.forEach((movie, index) => {
+      const movieCard = createMovieCard(
+        index,
+        movie.title,
+        movie.original_title,
+        movie.poster_path,
+        movie.vote_average,
+        movie.overview,
+        movie.id
+      );
+      document.getElementById("main3").appendChild(movieCard);
+    });
+  })
+  .catch(err => console.error(err));
+
+
 
 function createMovieCard(
   index,
@@ -42,32 +90,25 @@ function createMovieCard(
   const imageElement = document.createElement("img");
   const plusContainer = document.createElement("div");
   const titleElement = document.createElement("div");
-  // const otitleElement = document.createElement("div");
-  //const starElement = document.createElement("div");
   const hrElement = document.createElement("hr");
-  // const overviewElement = document.createElement("div");
+
 
   movieContainer.className = "card";
   imageElement.className = "poster";
   plusContainer.className = "plus";
   titleElement.className = "p_title";
-  // otitleElement.className = "p-otitle";
-  // starElement.className = "p_star";
-  // overviewElement.className = "p_over";
+
 
   let round = Math.round(vote_average * 10) / 10;
 
   imageElement.src = "https://image.tmdb.org/t/p/original" + poster_path;
 
   titleElement.textContent = title;
-  // otitleElement.textContent = `(${otitle})`;
-  // starElement.textContent = `평점 : ${round}`;
-  // overviewElement.textContent = overview;
+
   plusContainer.appendChild(titleElement);
-  // plusContainer.appendChild(otitleElement);
-  // plusContainer.appendChild(starElement);
+  ;
   plusContainer.appendChild(hrElement);
-  // plusContainer.appendChild(overviewElement);
+
   movieContainer.appendChild(imageElement);
   movieContainer.appendChild(plusContainer);
 
@@ -120,4 +161,6 @@ function renderMovies(movies) {
     );
     lcContainer.appendChild(movieCard);
   });
+
+
 }
