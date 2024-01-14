@@ -11,36 +11,37 @@ function displayModal(movie) {
 
   // 모달 내용을 클릭된 영화의 정보로 업데이트
   modalContent.innerHTML = `
-      <div class="modalDetails">
-        <h2>${movie.title}</h2>
-        <h3>${movie.original_title}</h3>
-        <p>${movie.release_date}</p>
-        <img class="modalPoster" src="https://image.tmdb.org/t/p/original${movie.poster_path}" alt="${movie} poster">
-        <hr>
-        <p>${movie.overview}</p>
-        <hr>
-        <h2>리뷰</h2>
-        <div class = "review">
-        <form class="row g-3">
-        <div class="col-md-6">
-        <label for="inputName" class="form-label"></label>
-        <input type="name" class="form-control" id="inputName" placeholder="작성자">
-        </div>
-        <div class="col-md-6">
-        <label for="inputPassword" class="form-label"></label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="비밀번호">
-        </div>
-        <div class="form-floating">
-        <textarea class="form-control" placeholder="여러분의 소중한 댓글을 입력해주세요" id="inputComment" style="height: 100px"></textarea>
-        <label for="inputComment">여러분의 소중한 댓글을 입력해주세요</label>
-        </div>
-        <div id="${movie.id}" class="reviewButton">
-        <button id="reviewbtn" type="submit" class="btn btn-primary">등록하기</button>
-        </div>
-        <div id="commentsContainer">
-        </div>
-        </div>
-        </div>
+  <div class="modalDetails">
+  <h2>${movie.title}</h2>
+  <h3>${movie.original_title}</h3>
+  <p>${movie.release_date}</p>
+  <img class="modalPoster" src="https://image.tmdb.org/t/p/original${movie.poster_path}" alt="${movie} poster">
+  <hr>
+  <p>${movie.overview}</p>
+  <hr>
+  </div>
+  <div>
+  <h2>리뷰</h2>
+  <div class = "review">
+  <form class="row g-3">
+  <div class="col-md-6">
+  <label for="inputName" class="form-label"></label>
+  <input type="name" class="form-control" id="inputName" placeholder="작성자">
+  </div>
+  <div class="col-md-6">
+  <label for="inputPassword" class="form-label"></label>
+  <input type="password" class="form-control" id="inputPassword" placeholder="비밀번호">
+  </div>
+  <div class="form-floating">
+  <textarea class="form-control" placeholder="여러분의 소중한 댓글을 입력해주세요" id="inputComment" style="height: 100px"></textarea>
+  <label for="inputComment">여러분의 소중한 댓글을 입력해주세요</label>
+  <div id="${movie.id}" class="reviewButton">
+  <button id="reviewbtn" type="submit" class="btn btn-primary">등록하기</button>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
     `;
 
   // 모달을 보이게 설정

@@ -21,6 +21,7 @@ function MovieFetch(url, containerId) {
             movie.poster_path,
             movie.vote_average,
             movie.overview,
+            movie.id,
             movie
           );
           document.getElementById(containerId).appendChild(movieCard);
