@@ -6,28 +6,51 @@ const options = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlYjNhYWVlNWYxYWUyZWUwMjViZjAzYjYzZGM2M2Y1ZCIsInN1YiI6IjY1OTc2N2YxMGU2NGFmMzE5YThjMThlZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WFpcy72hzLFJG-KeQGphAp9eFXTwipQJRsQmfd19Gxg"
   }
 };
-let isOpen = false;
-fetch(
+
+// API 호출 함수
+function MovieFetch(url, containerId) {
+  return new Promise((resolve, reject) => {
+    fetch(url, options)
+      .then(response => response.json())
+      .then(data => {
+        data.results.forEach((movie, index) => {
+          const movieCard = createMovieCard(
+            index,
+            movie.title,
+            movie.original_title,
+            movie.poster_path,
+            movie.vote_average,
+            movie.overview,
+            movie
+          );
+          document.getElementById(containerId).appendChild(movieCard);
+        });
+
+        // 성공적으로 데이터를 처리한 후에 프로미스를 해결(resolve)합니다.
+        resolve(data);
+      })
+      .catch(err => {
+        // 에러 발생 시 프로미스를 거부(reject)합니다.
+        reject(err);
+      });
+  });
+}
+
+// 사용 예시
+MovieFetch(
+  "https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=ko-KR&page=1&region=KR&sort_by=popularity.desc&with_original_language=ko",
+  "main"
+);
+
+MovieFetch(
   "https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1",
-  options
-)
-  .then(response => response.json())
-  .then(data => {
-    const lcContainer = document.getElementById("main");
-    data.results.forEach((movie, index) => {
-      const movieCard = createMovieCard(
-        index,
-        movie.title,
-        movie.original_title,
-        movie.poster_path,
-        movie.vote_average,
-        movie.overview,
-        movie
-      );
-      lcContainer.appendChild(movieCard);
-    });
-  })
-  .catch(err => console.error(err));
+  "main2"
+);
+
+MovieFetch(
+  "https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=ko-KR&page=1&sort_by=revenue.desc",
+  "main3"
+);
 
 function createMovieCard(
   index,
@@ -66,7 +89,7 @@ function createMovieCard(
   plusContainer.appendChild(titleElement);
   // plusContainer.appendChild(otitleElement);
   // plusContainer.appendChild(starElement);
-  // plusContainer.appendChild(hrElement);
+  plusContainer.appendChild(hrElement);
   // plusContainer.appendChild(overviewElement);
   movieContainer.appendChild(imageElement);
   movieContainer.appendChild(plusContainer);

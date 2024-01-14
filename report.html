@@ -25,9 +25,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-
-    <link rel="stylesheet" href="report.css" />
     <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="report.css" />
   </head>
 
   <body>
@@ -53,7 +52,7 @@
 
     <div class="default-ltr-cache-d4qcmr e9eyrqp1">
       <div class="default-ltr-cache-1dvfrvc e9eyrqp5">
-        <span class="sparta-logo">Sparta Movie</span>
+        <span class="sparta-logo">D_3M</span>
 
         <div class="background-text">
           <h1
@@ -93,25 +92,118 @@
           ></div>
         </div>
       </div>
+      <!-- 모달 추가 -->
+      <div class="modal hidden">
+        <div class="modalBackground"></div>
+        <div class="modalContent"></div>
+      </div>
     </div>
-
-    <!-- 모달 추가 -->
-    <div class="modal hidden">
-      <div class="modalBackground"></div>
-      <div class="modalContent"></div>
-    </div>
+    <section>
+      <div class="content-list">
+        <div class="titleBox">
+          <div id="blankBox"></div>
+          <h1>한국 인기 영화!</h1>
+          <button id="more-button" class="btn-btn-dark">
+            더보기
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-chevron-double-right"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div id="main" class="slider"></div>
+        <div class="prev">
+          <i class="fa-solid fa-angle-right prev-arrow"></i>
+        </div>
+        <div class="next">
+          <i class="fa-solid fa-angle-right"></i>
+        </div>
+      </div>
+    </section>
 
     <section>
       <div class="content-list">
-        <h1>인기 있는 영화!</h1>
-        <div id="main" class="slider"></div>
+        <div class="titleBox">
+          <div id="blankBox"></div>
+          <h1>미국 인기 영화!</h1>
+          <button id="more-button2" class="btn-btn-dark">
+            더보기
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-chevron-double-right"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div id="main2" class="slider"></div>
+        <div class="prev">
+          <i class="fa-solid fa-angle-right prev-arrow"></i>
+        </div>
+        <div class="next">
+          <i class="fa-solid fa-angle-right"></i>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="content-list">
+        <div class="titleBox">
+          <div id="blankBox"></div>
+          <h1>역대 영화 흥행 순위!</h1>
+          <button id="more-button3" class="btn-btn-dark">
+            더보기
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-chevron-double-right"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div id="main3" class="slider"></div>
         <div class="prev">
           <i class="fa-solid fa-angle-right prev-arrow"></i>
         </div>
         <div class="next"><i class="fa-solid fa-angle-right"></i></div>
       </div>
     </section>
-    <div>
+    <div id="topButton">
       <button
         type="button"
         class="btn btn-danger btn-floating btn-lg"
@@ -120,8 +212,8 @@
         <i class="fas fa-arrow-up"></i>
       </button>
     </div>
-    <script src="category.js"></script>
   </body>
   <script src="report.js"></script>
+  <script src="category.js"></script>
   <script src="modal.js"></script>
 </html>
