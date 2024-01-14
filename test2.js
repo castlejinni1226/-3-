@@ -222,10 +222,13 @@ function submitReview(reviewButton) {
   //유효성 검사
   if (!nameInput) {
     alert("이름이 입력되지 않았습니다.");
+    event.preventDefault();
   } else if (!passwordInput) {
     alert("비밀번호가 입력되지 않았습니다.");
+    event.preventDefault();
   } else if (!commentInput) {
     alert("리뷰의 내용이 입력되지 않았습니다.");
+    event.preventDefault();
   } else {
     const movieId = reviewButton.parentNode.id;
     let movieComments = localStorage.getItem(movieId);
@@ -250,4 +253,3 @@ function submitReview(reviewButton) {
     localStorage.setItem(movieId, JSON.stringify(movieComments));
   }
 }
-console.log(localStorage.getItem("906126"));
