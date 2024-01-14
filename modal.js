@@ -7,7 +7,6 @@ function displayModal(movie) {
   // 모달 엘리먼트에 접근
   const modal = document.querySelector(".modal");
   const modalContent = modal.querySelector(".modalContent");
-  document.body.style.overflow = "hidden";
 
   // 모달 내용을 클릭된 영화의 정보로 업데이트
   modalContent.innerHTML = `
@@ -38,11 +37,10 @@ function displayModal(movie) {
   <div id="${movie.id}" class="reviewButton">
   <button id="reviewbtn" type="submit" class="btn btn-primary">등록하기</button>
   </div>
+  <div id="commentsContainer">
+        </div>
   </div>
-  </div>
-  </div>
-  </div>
-    `;
+  </div>`;
 
   // 모달을 보이게 설정
   modal.classList.remove("hidden");
@@ -67,14 +65,14 @@ function displayModal(movie) {
     card.classList.add("reviewCard");
     card.id = retrievedComments[i].password;
     card.innerHTML = `
-  <div class="card-body">
-    <blockquote class="blockquote mb-0">
-      <p>${retrievedComments[i].comment}</p>
-      <footer class="blockquote-footer">
-        ${retrievedComments[i].name}
-      </footer>
-    </blockquote>
-  </div>`;
+   <div class="card-body">
+     <blockquote class="blockquote mb-0">
+       <p>${retrievedComments[i].comment}</p>
+       <footer class="blockquote-footer">
+         ${retrievedComments[i].name}
+       </footer>
+     </blockquote>
+   </div>`;
     commentsContainer.appendChild(card);
   }
 }
@@ -83,7 +81,7 @@ function displayModal(movie) {
 function closeModal() {
   const modal = document.querySelector(".modal");
   modal.classList.add("hidden");
-  document.body.style.overflow = "auto";
+  isOpen = false;
 }
 
 // 모달 배경에 닫기 함수를 연결

@@ -142,7 +142,7 @@ function showMoviesByCategory(url, message, currentPage) {
 
   // 제목과 뒤로가기 버튼
   const backButton = document.createElement("button");
-  backButton.textContent = "뒤로가기";
+  backButton.textContent = "메인으로";
   backButton.id = "back-to-main";
   backButton.type = "button";
   backButton.className = "btn-btn-dark";
