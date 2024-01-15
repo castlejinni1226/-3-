@@ -30,6 +30,9 @@ fetch(
   })
   .catch((err) => console.error(err));
 
+function goMainPage() {
+  location.reload();
+}
 function createMovieCard(
   index,
   title,
@@ -39,6 +42,8 @@ function createMovieCard(
   overview,
   id
 ) {
+  console.log("크리에이트무비카드 스타트");
+
   const movieContainer = document.createElement("div");
   const imageElement = document.createElement("img");
   const plusContainer = document.createElement("div");
@@ -58,7 +63,11 @@ function createMovieCard(
 
   let round = Math.round(vote_average * 10) / 10;
 
-  imageElement.src = "https://image.tmdb.org/t/p/original" + poster_path;
+  if (poster_path != null) {
+    imageElement.src = "https://image.tmdb.org/t/p/original" + poster_path;
+  } else {
+    imageElement.src = "https://critics.io/img/movies/poster-placeholder.png";
+  }
 
   titleElement.textContent = title;
   otitleElement.textContent = `(${otitle})`;
@@ -77,36 +86,58 @@ function createMovieCard(
   }
   imageElement.addEventListener("click", handlePosterClick);
   return movieContainer;
+  console.log("크리에이트무비카드 엔드");
 }
 
-const sbtn = document.getElementById("sbtn");
-sbtn.addEventListener("click", handleSearch);
+/*검색기능*/
 
-const sinput = document.getElementById("sinput");
-sbtn.addEventListener("keyup", function (event) {
-  if (event.key === "Enter") {
-    handleSearch();
-  }
+const sbtn = document.querySelector("#sbtn");
+const sinput = document.querySelector("#sinput");
+const sform = document.querySelector("#search");
+
+sform.addEventListener("submit", (event) => {
+  event.preventDefault();
+  handleSearch(sinput.value);
 });
 
-{
-  /* <form class="search-form" onsubmit="search_movie(event)">
-    <input class="search-box" /> */
-}
+/*
+  const searchKey = sinput.value;
+  const check = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 
-const search_box = document.getElementsByClassName("search-box")[0];
-const search_keyword = search_box.value.toUpperCase();
+  if (check.test(searchKey)) {
+    searchKey.trim();
+  } else {
+    searchKey.trim().toUpperCase();
+  }
 
-//all_movie_list
-const search_movie_list = all_movie_list.filter(({ title }) =>
-  title.toUpperCase().includes(search_keyword)
-);
+  const movieCards = document.querySelectorAll(".card");
 
-search_movie_list.length > 0
-  ? draw_movie_list(search_movie_list)
-  : alert("검색결과가 없어용");
+  movieCards.forEach((card) => {
+    const title_1 = card.querySelector(".p_title").textContent.trim();
+    const title_2 = card.querySelector(".p-otitle").textContent.trim();
+
+    if (check.test(title_1)) {
+    } else {
+      title_1.toUpperCase();
+    }
+
+    if (check.test(title_2)) {
+    } else {
+      title_2.toUpperCase();
+    }
+
+    const searchedValue = searchKey;
+
+    if (title_1.includes(searchedValue) || title_2.includes(searchedValue)) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+  */
 
 function renderMovies(movies) {
+  console.log("renderMovies 스타트");
   const lcContainer = document.getElementById("main");
   lcContainer.innerHTML = "";
 
@@ -122,4 +153,5 @@ function renderMovies(movies) {
     );
     lcContainer.appendChild(movieCard);
   });
+  console.log("renderMovies 엔드");
 }
