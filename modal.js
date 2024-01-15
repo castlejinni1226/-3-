@@ -75,6 +75,8 @@ function displayModal(movie) {
   // 모달 창을 닫는 함수
   function closeModal() {
     const modal = document.querySelector(".modal");
+    // 다시 열 때 위에서부터 볼 수 있도록 스크롤
+    modal.scrollTo(0, 0);
     modal.classList.add("hidden");
     isOpen = false;
   }
