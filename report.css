@@ -151,6 +151,15 @@ body {
   color: white;
   background-color: transparent;
 }
+.card:hover {
+  transform: scale(1.1);
+  transition: all 0.15s ease-out;
+  transition-behavior: normal;
+  transition-duration: 0.15s;
+  transition-timing-function: ease-out;
+  transition-delay: 0s;
+  transition-property: all;
+}
 
 .poster {
   width: 100%;
