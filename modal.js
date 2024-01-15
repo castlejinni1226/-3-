@@ -74,7 +74,8 @@ function displayModal(movie) {
          ${retrievedComments[i].name}
        </footer>
      </blockquote>
-     <button type="button" class="btn btn-outline-dark deletebtn">삭제</button>
+     <button type="button" class="btn btn-outline-light editbtn">수정</button>
+     <button type="button" class="btn btn-outline-danger deletebtn">삭제</button>
    </div>`;
       commentsContainer.appendChild(card);
     }
@@ -95,6 +96,15 @@ function displayModal(movie) {
   }
   function handleDeleteButton(event) {
     deleteReview(event.target);
+  }
+
+  // 리뷰 수정 버튼
+  let editButtons = document.getElementsByClassName("editbtn");
+  for (let i = 0; i < editButtons.length; i++) {
+    editButtons[i].addEventListener("click", handleEditButton);
+  }
+  function handleEditButton(event) {
+    editReview(event.target);
   }
 }
 
@@ -158,6 +168,37 @@ function deleteReview(deleteButton) {
     // 삭제 상황을 Local Storage에 저장
     localStorage.setItem(movieId, JSON.stringify(movieComments));
     alert("삭제했습니다.");
+  } else {
+    alert("비밀번호가 다릅니다.");
+  }
+}
+
+// 리뷰 수정 함수
+function editReview(editButton) {
+  let commentNow =
+    editButton.closest(".comment").firstElementChild.firstElementChild;
+  let movieId = editButton.closest(".modalContent").id;
+  let movieComments = localStorage.getItem(movieId);
+  movieComments = JSON.parse(movieComments);
+
+  let commentId = editButton.parentNode.id;
+  let commentToEdit = movieComments[commentId];
+
+  let password = commentToEdit["password"];
+  let pwCheck = prompt("비밀번호를 입력하세요.");
+
+  if (password === pwCheck) {
+    let newContent = prompt("수정할 내용을 입력하세요.");
+    if (!newContent) {
+      alert("내용이 입력되지 않았습니다.");
+      event.preventDefault();
+      return;
+    }
+    commentNow.innerHTML = `<p>${newContent}</p>`;
+    commentToEdit["comment"] = newContent;
+    // 수정 상황을 Local Storage에 저장
+    localStorage.setItem(movieId, JSON.stringify(movieComments));
+    alert("수정되었습니다.");
   } else {
     alert("비밀번호가 다릅니다.");
   }

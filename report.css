@@ -335,6 +335,12 @@ hr {
 
 .deletebtn {
   border: none;
+  color: red;
+}
+
+.editbtn {
+  border: none;
+  color: grey;
 }
 
 .hidden {
