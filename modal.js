@@ -7,6 +7,7 @@ function displayModal(movie) {
   // 모달 엘리먼트에 접근
   const modal = document.querySelector(".modal");
   const modalContent = modal.querySelector(".modalContent");
+  document.body.style.overflow = "hidden";
 
   // 모달 내용을 클릭된 영화의 정보로 업데이트
   modalContent.innerHTML = `
@@ -81,6 +82,7 @@ function displayModal(movie) {
 function closeModal() {
   const modal = document.querySelector(".modal");
   modal.classList.add("hidden");
+  document.body.style.overflow = "auto";
   isOpen = false;
 }
 
