@@ -61,8 +61,9 @@ function displayModal(movie) {
   <button id="reviewbtn" type="submit" class="btn btn-outline-dark">등록하기</button>
   </div>
   </div>
-  <div id="commentsContainer">
-        </div>    
+  <div id="commentsContainer"></div>  
+  </div>  
+  <button type="button" class="btn-close" aria-label="Close"></button>
   `;
 
   // 모달을 보이게 설정
@@ -83,6 +84,10 @@ function displayModal(movie) {
 
   // 모달 배경에 닫기 함수를 연결
   modalBackground.addEventListener("click", closeModal);
+
+  // 모달 버튼에 닫기 함수를 연결
+  let closeButton = modal.querySelector(".btn-close");
+  closeButton.addEventListener("click", closeModal);
 
   // 작성된 댓글 표시하기
   const commentsContainer = document.getElementById("commentsContainer");
