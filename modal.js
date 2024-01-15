@@ -37,10 +37,11 @@ function displayModal(movie) {
   <div id="${movie.id}" class="reviewButton">
   <button id="reviewbtn" type="submit" class="btn btn-primary">등록하기</button>
   </div>
-  <div id="commentsContainer">
-        </div>
   </div>
-  </div>`;
+  </div>
+  <div id="commentsContainer">
+        </div>    
+  `;
 
   // 모달을 보이게 설정
   modal.classList.remove("hidden");
