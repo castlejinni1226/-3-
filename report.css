@@ -35,7 +35,7 @@ body {
 
 .background-text {
   position: absolute;
-  top: 40%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -387,16 +387,27 @@ hr {
   transition: none;
 }
 .copy-text-block {
-  text-align: center;
   margin-bottom: 30px;
+  margin-left: 20px;
   font-size: 20px;
   font-weight: bolder;
   color: #ccc;
+  display: flex;
 }
 .team_name {
-  color: white;
+  color: red;
   font-size: 30px;
   margin-top: 20px;
   margin-left: 30px;
+  margin-bottom: 40px;
+  text-align: center;
 }
-
+.question {
+  color: white;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+.footer {
+  background-color: rgb(27, 27, 31);
+  margin-top: 50px;
+}
