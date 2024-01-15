@@ -1,8 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@500&display=swap");
 
 * {
+
   font-family: "Nanum Pen Script", cursive;
   font-family: "Noto Sans KR", sans-serif;
+
+}
+
+.i {
+  font-size: 100px;
 }
 
 body {
@@ -15,11 +21,9 @@ body {
 }
 
 .main_background_shadow {
-  background-image: linear-gradient(
-    rgba(0, 0, 0, 0.9) 0,
-    rgba(0, 0, 0, 0.9) 60%,
-    rgba(0, 0, 0, 0.9) 100%
-  );
+  background-image: linear-gradient(rgba(0, 0, 0, 0.9) 0,
+      rgba(0, 0, 0, 0.9) 60%,
+      rgba(0, 0, 0, 0.9) 100%);
   position: absolute;
   height: 180%;
   top: 0;
@@ -31,7 +35,7 @@ body {
 
 .background-text {
   position: absolute;
-  top: 30%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -49,6 +53,21 @@ body {
   font-size: 60px;
   font-weight: bold;
   color: red;
+}
+
+.logo {
+  font-size: 60px;
+  position: absolute;
+  top: 10px;
+  right: 40px;
+  color: red;
+}
+
+.search-logo {
+  font-size: 20px;
+  position: absolute;
+  top: 162px;
+  right: 290px;
 }
 
 .search-box {
@@ -107,25 +126,25 @@ body {
 
   padding-top: 50px;
 }
+
 .details {
   margin-top: 50px;
   text-align: center;
   position: relative;
+  
 }
+
 .details-main {
   width: 100%;
-
   display: grid;
-  grid-template-columns: repeat(4, 280px);
+  grid-template-columns: repeat(4, 250px); /* 열의 크기를 조절하세요 */
   grid-auto-rows: auto;
-
-  grid-column-gap: 80px;
+  grid-column-gap: 70px; /* 그리드 아이템 간의 가로 간격을 조절하세요 */
   grid-row-gap: 80px;
-
   overflow: auto;
-
   padding-top: 0px;
   padding-left: 50px;
+  margin-right: 100px;
 }
 
 /* .card {
@@ -245,14 +264,18 @@ hr {
   color: black;
 }
 
-#blankBox {
+.blankBox {
   width: 60px;
+  
 }
+
+
 .titleBox {
   display: flex;
   justify-content: space-between;
-  margin: 0px 20px 0px 40px;
+  text-align: center;
 }
+
 .btn-btn-dark {
   background-color: transparent;
   border-color: transparent;
@@ -325,8 +348,10 @@ hr {
   width: 35%;
   height: auto;
 
-  background: #000; /*Change this to a background image or remove*/
-  box-shadow: 1px 1px 5px #333; /* Standard blur at 5px. Increase for more depth */
+  background: #000;
+  /*Change this to a background image or remove*/
+  box-shadow: 1px 1px 5px #333;
+  /* Standard blur at 5px. Increase for more depth */
   -webkit-box-shadow: 1px 1px 5px #333;
   -moz-box-shadow: 1px 1px 5px #333;
 }
@@ -351,6 +376,7 @@ hr {
     opacity: 0;
     transform: translateY(20px);
   }
+
   100% {
     opacity: 1;
     transform: none;
@@ -362,9 +388,24 @@ hr {
 .pagination {
   justify-content: center;
 }
+
 .page-link {
-  color: white;
+  color: black;
   border-color: transparent;
-  background-color: transparent;
+  background-color: white;
   transition: none;
 }
+.copy-text-block {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 20px;
+  font-weight: bolder;
+  color: #ccc;
+}
+.team_name {
+  color: white;
+  font-size: 30px;
+  margin-top: 20px;
+  margin-left: 30px;
+}
+

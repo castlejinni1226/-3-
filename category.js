@@ -1,8 +1,8 @@
 // Add scrolling functionality
-const containerDivs = document.querySelectorAll(".slider");
+const containerDivs = document.querySelectorAll(".slider");  // 이 줄은 "slider", "next" 및 "prev" 클래스가 있는 모든 요소를 ​​선택하고 배열에 저장합니다.  
 const nextDivs = document.querySelectorAll(".next");
 const prevDivs = document.querySelectorAll(".prev");
-let currentIndexs = [0, 0, 0];
+let currentIndexs = [0, 0, 0];  // 배열은 각 슬라이더의 현재 인덱스를 추적하는 데 사용됩니다. 각 인덱스는 서로 다른 슬라이더에 해당합니다.
 
 for (let i = 0; i < containerDivs.length; i++) {
   nextDivs[i].addEventListener("click", () => {
@@ -12,11 +12,12 @@ for (let i = 0; i < containerDivs.length; i++) {
       updateSlider(container, currentIndexs[i]);
     }
   });
+  // "다음" 버튼을 클릭하면 현재 인덱스가 슬라이드 수에서 2를 뺀 값보다 작은지 확인합니다. true인 경우 인덱스를 증가시키고 updateSlider를 호출합니다 
 
   prevDivs[i].addEventListener("click", () => {
     const container = containerDivs[i];
     if (currentIndexs[i] > 0) {
-      currentIndexs[i] -= 1;
+      currentIndexs[i] -= 1; //"prev" 버튼을 클릭하면 현재 인덱스가 0보다 큰지 확인합니다. true인 경우 인덱스를 감소시키고 updateSlider를 호출합니다
       updateSlider(container, currentIndexs[i]);
     }
   });
