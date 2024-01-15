@@ -58,6 +58,7 @@ function displayModal(movie) {
     submitReview(reviewButton);
   }
 
+  // 작성된 댓글 표시하기
   const commentsContainer = document.getElementById("commentsContainer");
   const retrievedComments = JSON.parse(localStorage.getItem(movie.id));
 
@@ -127,10 +128,3 @@ function submitReview(reviewButton) {
     localStorage.setItem(movieId, JSON.stringify(movieComments));
   }
 }
-
-// // 모달 창이 열리면 뒷 내용 스크롤 방지
-// if (isOpen) {
-//   document.body.style.overflow = "hidden";
-// } else {
-//   document.body.style.overflowY = "auto";
-// }
