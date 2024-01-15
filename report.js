@@ -83,6 +83,13 @@ function createMovieCard(
 
   imageElement.src = "https://image.tmdb.org/t/p/original" + poster_path;
 
+  //search 결과 데이터의 poster_path가 null 인경우, 이미지 빈값에 대해 디폴트 이미지로 처리
+  if (poster_path != null) {
+    imageElement.src = "https://image.tmdb.org/t/p/original" + poster_path;
+  } else {
+    imageElement.src = "https://critics.io/img/movies/poster-placeholder.png";
+  }
+
   titleElement.textContent = title;
   otitleElement.textContent = `(${otitle})`;
   starElement.textContent = `평점 : ${round}`;
@@ -100,34 +107,14 @@ function createMovieCard(
   // }
   // imageElement.addEventListener("click", handlePosterClick);
   imageElement.addEventListener("click", () => displayModal(movie));
+
   return movieContainer;
 }
-
-// const sbtn = document.getElementById("sbtn");
-// sbtn.addEventListener("click", handleSearch);
-
-// const sinput = document.getElementById("sinput");
-// sbtn.addEventListener("keyup", function (event) {
-//   if (event.key === "Enter") {
-//     handleSearch();
-//   }
-// });
 
 {
   /* <form class="search-form" onsubmit="search_movie(event)">
     <input class="search-box" /> */
 }
-
-// const search_box = document.getElementsByClassName("search-box")[0];
-// const search_keyword = search_box.value.toUpperCase();
-
-// const search_movie_list = all_movie_list.filter(({ title }) =>
-//   title.toUpperCase().includes(search_keyword)
-// );
-
-// search_movie_list.length > 0
-//   ? draw_movie_list(search_movie_list)
-//   : alert("검색결과가 없어용");
 
 function renderMovies(movies) {
   const lcContainer = document.getElementById("main");
@@ -146,4 +133,19 @@ function renderMovies(movies) {
     );
     lcContainer.appendChild(movieCard);
   });
+}
+
+//검색기능 추가
+const sbtn = document.querySelector("#sbtn");
+const sinput = document.querySelector("#sinput");
+const sform = document.querySelector("#search");
+
+sform.addEventListener("submit", event => {
+  event.preventDefault();
+  handleSearch(sinput.value);
+});
+
+//스파르타로고 클릭 시, 메인화면 새로고침
+function goMainPage() {
+  location.reload();
 }
