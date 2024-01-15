@@ -257,20 +257,6 @@ hr {
   display: none;
 }
 
-.review {
-  border: 1px solid gray;
-  border-radius: 4px;
-  padding: 20px;
-  width: 90%;
-  margin: auto;
-}
-
-#reviewbtn {
-  width: auto;
-  margin-left: auto;
-  margin-right: 10px;
-}
-
 /* 모달 css */
 .modal {
   display: flex;
@@ -316,7 +302,6 @@ hr {
   width: 35%;
   height: auto;
 
-  background: #000; /*Change this to a background image or remove*/
   box-shadow: 1px 1px 5px #333; /* Standard blur at 5px. Increase for more depth */
   -webkit-box-shadow: 1px 1px 5px #333;
   -moz-box-shadow: 1px 1px 5px #333;
@@ -326,6 +311,30 @@ hr {
 .modalContent h3 {
   font-size: 24px;
   color: gray;
+}
+
+.review {
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding: 20px;
+  width: 90%;
+  margin: auto;
+}
+
+#reviewbtn {
+  width: auto;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.comment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.deletebtn {
+  border: none;
 }
 
 .hidden {

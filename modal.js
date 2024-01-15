@@ -7,6 +7,7 @@ function displayModal(movie) {
   // 모달 엘리먼트에 접근
   const modal = document.querySelector(".modal");
   const modalContent = modal.querySelector(".modalContent");
+  modalContent.id = movie.id;
 
   // 모달 내용을 클릭된 영화의 정보로 업데이트
   modalContent.innerHTML = `
@@ -34,9 +35,7 @@ function displayModal(movie) {
   <div class="form-floating">
   <textarea class="form-control" placeholder="여러분의 소중한 댓글을 입력해주세요" id="inputComment" style="height: 100px"></textarea>
   <label for="inputComment">여러분의 소중한 댓글을 입력해주세요</label>
-  <div id="${movie.id}" class="reviewButton">
-  <button id="reviewbtn" type="submit" class="btn btn-primary">등록하기</button>
-  </div>
+  <button id="reviewbtn" type="submit" class="btn btn-outline-dark">등록하기</button>
   </div>
   </div>
   <div id="commentsContainer">
@@ -46,11 +45,42 @@ function displayModal(movie) {
   // 모달을 보이게 설정
   modal.classList.remove("hidden");
   isOpen = true;
-  console.log(isOpen);
+
   // 애니메이션을 위해 fadein 클래스 추가
   modalContent.classList.add("fadein");
 
-  // 리뷰 버튼
+  // 모달 창을 닫는 함수
+  function closeModal() {
+    const modal = document.querySelector(".modal");
+    modal.classList.add("hidden");
+    isOpen = false;
+  }
+
+  // 모달 배경에 닫기 함수를 연결
+  modalBackground.addEventListener("click", closeModal);
+
+  // 작성된 댓글 표시하기
+  const commentsContainer = document.getElementById("commentsContainer");
+  const retrievedComments = JSON.parse(localStorage.getItem(movie.id));
+  if (retrievedComments) {
+    for (let i = 0; i < retrievedComments.length; i++) {
+      const card = document.createElement("div");
+      card.classList.add("reviewCard");
+      card.innerHTML = `
+   <div class="comment" id=${i} >
+     <blockquote class="blockquote mb-0">
+       <p>${retrievedComments[i].comment}</p>
+       <footer class="blockquote-footer">
+         ${retrievedComments[i].name}
+       </footer>
+     </blockquote>
+     <button type="button" class="btn btn-outline-dark deletebtn">삭제</button>
+   </div>`;
+      commentsContainer.appendChild(card);
+    }
+  }
+
+  // 리뷰 등록 버튼
   const reviewButton = document.getElementById("reviewbtn");
   reviewButton.addEventListener("click", handleReviewButton);
 
@@ -58,37 +88,17 @@ function displayModal(movie) {
     submitReview(reviewButton);
   }
 
-  // 작성된 댓글 표시하기
-  const commentsContainer = document.getElementById("commentsContainer");
-  const retrievedComments = JSON.parse(localStorage.getItem(movie.id));
-
-  for (let i = 0; i < retrievedComments.length; i++) {
-    const card = document.createElement("div");
-    card.classList.add("reviewCard");
-    card.id = retrievedComments[i].password;
-    card.innerHTML = `
-   <div class="card-body">
-     <blockquote class="blockquote mb-0">
-       <p>${retrievedComments[i].comment}</p>
-       <footer class="blockquote-footer">
-         ${retrievedComments[i].name}
-       </footer>
-     </blockquote>
-   </div>`;
-    commentsContainer.appendChild(card);
+  // 리뷰 삭제 버튼
+  let deleteButtons = document.getElementsByClassName("deletebtn");
+  for (let i = 0; i < deleteButtons.length; i++) {
+    deleteButtons[i].addEventListener("click", handleDeleteButton);
+  }
+  function handleDeleteButton(event) {
+    deleteReview(event.target);
   }
 }
 
-// 모달 창을 닫는 함수
-function closeModal() {
-  const modal = document.querySelector(".modal");
-  modal.classList.add("hidden");
-  isOpen = false;
-}
-
-// 모달 배경에 닫기 함수를 연결
-modalBackground.addEventListener("click", closeModal);
-
+// 리뷰 저장 함수
 function submitReview(reviewButton) {
   let nameInput = document.getElementById("inputName").value;
   let commentInput = document.getElementById("inputComment").value;
@@ -105,7 +115,7 @@ function submitReview(reviewButton) {
     alert("리뷰의 내용이 입력되지 않았습니다.");
     event.preventDefault();
   } else {
-    const movieId = reviewButton.parentNode.id;
+    let movieId = reviewButton.closest(".modalContent").id;
     let movieComments = localStorage.getItem(movieId);
 
     // 저장된 댓글이 없다면 빈 배열로 초기화
@@ -126,5 +136,29 @@ function submitReview(reviewButton) {
 
     // 작성된 리뷰를 Local Storage에 저장
     localStorage.setItem(movieId, JSON.stringify(movieComments));
+  }
+}
+
+// 리뷰 삭제 함수
+function deleteReview(deleteButton) {
+  let commentNow = deleteButton.closest(".comment");
+  let movieId = deleteButton.closest(".modalContent").id;
+  let movieComments = localStorage.getItem(movieId);
+  movieComments = JSON.parse(movieComments);
+
+  let commentId = deleteButton.parentNode.id;
+  let commentToDelete = movieComments[commentId];
+
+  let password = commentToDelete["password"];
+  let pwCheck = prompt("비밀번호를 입력하세요.");
+
+  if (password === pwCheck) {
+    movieComments.splice(commentId, 1);
+    commentNow.remove();
+    // 삭제 상황을 Local Storage에 저장
+    localStorage.setItem(movieId, JSON.stringify(movieComments));
+    alert("삭제했습니다.");
+  } else {
+    alert("비밀번호가 다릅니다.");
   }
 }
