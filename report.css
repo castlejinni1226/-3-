@@ -313,24 +313,36 @@ hr {
   color: gray;
 }
 
+.modalRight {
+  width: 70%;
+}
+
 .review {
   border: 1px solid gray;
   border-radius: 4px;
   padding: 20px;
   width: 90%;
-  margin: auto;
+  margin: 3% auto 5% auto;
 }
 
 #reviewbtn {
   width: auto;
-  margin-left: auto;
-  margin-right: 10px;
+  margin-top: 3%;
 }
 
 .comment {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  margin-bottom: 3%;
+  padding-left: 5%;
+}
+
+.blockquote {
+  flex: 1;
+  flex-basis: 100%;
 }
 
 .deletebtn {
