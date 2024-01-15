@@ -1,8 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@500&display=swap");
 
 * {
+<<<<<<< Updated upstream
   font-family: "Nanum Pen Script", cursive;
   font-family: "Noto Sans KR", sans-serif;
+=======
+  font-family: 'Nanum Pen Script', cursive;
+  font-family: 'Noto Sans KR', sans-serif;
+>>>>>>> Stashed changes
+}
+
+.i {
+  font-size: 100px;
 }
 
 body {
@@ -31,7 +40,7 @@ body {
 
 .background-text {
   position: absolute;
-  top: 30%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -51,6 +60,19 @@ body {
   color: red;
 }
 
+.logo {
+  font-size: 60px;
+  position: absolute;
+  top: 10px;
+  right: 40px;
+  color: red;
+}
+.search-logo {
+  font-size: 20px;
+  position: absolute;
+  top : 162px;
+  right: 290px;
+}
 .search-box {
   margin-top: 20px;
   display: flex;
@@ -163,6 +185,11 @@ body {
   text-align: center;
   z-index: 1;
   color: white;
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
 }
 
 .plus {
