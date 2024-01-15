@@ -26,7 +26,6 @@ function displayModal(movie) {
     <path d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z"/>
   </svg>`;
   }
-  console.log(star);
 
   // 모달 내용을 클릭된 영화의 정보로 업데이트
   modalContent.innerHTML = `
@@ -46,7 +45,18 @@ function displayModal(movie) {
   <div class = "modalRight">
   <h2>리뷰</h2>
   <div class = "review">
-  <form class="row g-3">
+  <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">별점</label>
+            <select class="form-select" id="inputStar">
+                <option selected>별점 선택</option>
+                <option value="★">★</option>
+                <option value="★★">★★</option>
+                <option value="★★★">★★★</option>
+                <option value="★★★★">★★★★</option>
+                <option value="★★★★★">★★★★★</option>
+            </select>
+        </div>
+  <form class="row g-3 userInfoArea">
   <div class="col-md-6">
   <label for="inputName" class="form-label"></label>
   <input type="name" class="form-control" id="inputName" placeholder="작성자">
@@ -55,14 +65,16 @@ function displayModal(movie) {
   <label for="inputPassword" class="form-label"></label>
   <input type="password" class="form-control" id="inputPassword" placeholder="비밀번호">
   </div>
+  </form>
   <div class="form-floating">
   <textarea class="form-control" placeholder="여러분의 소중한 댓글을 입력해주세요" id="inputComment" style="height: 100px"></textarea>
   <label for="inputComment">여러분의 소중한 댓글을 입력해주세요</label>
   <button id="reviewbtn" type="submit" class="btn btn-outline-dark">등록하기</button>
   </div>
   </div>
-  <div id="commentsContainer">
-        </div>    
+  <div id="commentsContainer"></div>  
+  </div>  
+  <button type="button" class="btn-close" aria-label="Close"></button>
   `;
 
   // 모달을 보이게 설정
@@ -72,17 +84,12 @@ function displayModal(movie) {
   // 애니메이션을 위해 fadein 클래스 추가
   modalContent.classList.add("fadein");
 
-  // 모달 창을 닫는 함수
-  function closeModal() {
-    const modal = document.querySelector(".modal");
-    // 다시 열 때 위에서부터 볼 수 있도록 스크롤
-    modal.scrollTo(0, 0);
-    modal.classList.add("hidden");
-    isOpen = false;
-  }
-
   // 모달 배경에 닫기 함수를 연결
   modalBackground.addEventListener("click", closeModal);
+
+  // 모달 버튼에 닫기 함수를 연결
+  let closeButton = modal.querySelector(".btn-close");
+  closeButton.addEventListener("click", closeModal);
 
   // 작성된 댓글 표시하기
   const commentsContainer = document.getElementById("commentsContainer");
@@ -97,6 +104,7 @@ function displayModal(movie) {
        <p>${retrievedComments[i].comment}</p>
        <footer class="blockquote-footer">
          ${retrievedComments[i].name}
+         <p>${retrievedComments[i].star}</p>
        </footer>
      </blockquote>
      <button type="button" class="btn btn-outline-light btn-sm editbtn">수정</button>
@@ -133,45 +141,65 @@ function displayModal(movie) {
   }
 }
 
+// 모달 창을 닫는 함수
+function closeModal() {
+  const modal = document.querySelector(".modal");
+  // 다시 열 때 위에서부터 볼 수 있도록 스크롤
+  modal.scrollTo(0, 0);
+  modal.classList.add("hidden");
+  isOpen = false;
+}
+
 // 리뷰 저장 함수
 function submitReview(reviewButton) {
   let nameInput = document.getElementById("inputName").value;
   let commentInput = document.getElementById("inputComment").value;
   let passwordInput = document.getElementById("inputPassword").value;
+  let starInput = document.getElementById("inputStar").value;
 
   //유효성 검사
-  if (!nameInput) {
+  if (starInput === "별점 선택") {
+    alert("별점을 선택해주세요.");
+    event.preventDefault();
+    return;
+  } else if (!nameInput) {
     alert("이름이 입력되지 않았습니다.");
     event.preventDefault();
+    return;
   } else if (!passwordInput) {
     alert("비밀번호가 입력되지 않았습니다.");
     event.preventDefault();
+    return;
   } else if (!commentInput) {
     alert("리뷰의 내용이 입력되지 않았습니다.");
     event.preventDefault();
-  } else {
-    let movieId = reviewButton.closest(".modalContent").id;
-    let movieComments = localStorage.getItem(movieId);
-
-    // 저장된 댓글이 없다면 빈 배열로 초기화
-    if (!movieComments) {
-      movieComments = [];
-    } else {
-      // 저장된 댓글이 있다면 JSON 문자열을 파싱하여 배열로 변환
-      movieComments = JSON.parse(movieComments);
-    }
-
-    const newComment = {
-      name: nameInput,
-      password: passwordInput,
-      comment: commentInput
-    };
-
-    movieComments.push(newComment);
-
-    // 작성된 리뷰를 Local Storage에 저장
-    localStorage.setItem(movieId, JSON.stringify(movieComments));
+    return;
   }
+
+  let movieId = reviewButton.closest(".modalContent").id;
+  let movieComments = localStorage.getItem(movieId);
+
+  // 저장된 댓글이 없다면 빈 배열로 초기화
+  if (!movieComments) {
+    movieComments = [];
+  } else {
+    // 저장된 댓글이 있다면 JSON 문자열을 파싱하여 배열로 변환
+    movieComments = JSON.parse(movieComments);
+  }
+
+  const newComment = {
+    name: nameInput,
+    password: passwordInput,
+    comment: commentInput,
+    star: starInput
+  };
+
+  movieComments.push(newComment);
+
+  // 작성된 리뷰를 Local Storage에 저장
+  localStorage.setItem(movieId, JSON.stringify(movieComments));
+  alert("등록되었습니다.");
+  closeModal();
 }
 
 // 리뷰 삭제 함수
