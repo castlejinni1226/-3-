@@ -325,6 +325,10 @@ hr {
   margin: 3% auto 5% auto;
 }
 
+.userInfoArea {
+  margin-bottom: 3%;
+}
+
 #reviewbtn {
   width: auto;
   margin-top: 3%;
