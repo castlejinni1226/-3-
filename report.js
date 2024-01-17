@@ -19,12 +19,9 @@ function MovieFetch(url, containerId) {
 
           document.getElementById(containerId).appendChild(movieCard);
         });
-
-        // 성공적으로 데이터를 처리한 후에 프로미스를 해결(resolve)합니다.
         resolve(data);
       })
       .catch(err => {
-        // 에러 발생 시 프로미스를 거부(reject)합니다.
         reject(err);
       });
   });
@@ -76,7 +73,7 @@ function createMovieCard(
 
   imageElement.src = "https://image.tmdb.org/t/p/original" + poster_path;
 
-  //search 결과 데이터의 poster_path가 null 인경우, 이미지 빈값에 대해 디폴트 이미지로 처리
+  //search 결과 데이터의 poster_path가 null 인경우
   if (poster_path != null) {
     imageElement.src = "https://image.tmdb.org/t/p/original" + poster_path;
   } else {
@@ -88,25 +85,12 @@ function createMovieCard(
   starElement.textContent = `평점 : ${round}`;
   overviewElement.textContent = overview;
   plusContainer.appendChild(titleElement);
-  // plusContainer.appendChild(otitleElement);
-  // plusContainer.appendChild(starElement);
   plusContainer.appendChild(hrElement);
-  // plusContainer.appendChild(overviewElement);
   movieContainer.appendChild(imageElement);
   movieContainer.appendChild(plusContainer);
-
-  // function handlePosterClick() {
-  //   alert(`해당 영화의 ID : ${id}`);
-  // }
-  // imageElement.addEventListener("click", handlePosterClick);
   imageElement.addEventListener("click", () => displayModal(movie));
 
   return movieContainer;
-}
-
-{
-  /* <form class="search-form" onsubmit="search_movie(event)">
-    <input class="search-box" /> */
 }
 
 function renderMovies(movies) {

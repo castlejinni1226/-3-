@@ -18,27 +18,18 @@ function handleSearch(val) {
   )
     .then(response => response.json())
     .then(data => {
-      //const lcContainer = document.getElementById("main4");
-
       if (data.total_results > 0) {
-        //const movieCards = document.querySelectorAll(".card");
-        //const parent = document.getElementById("main");
-        //parent.replaceChildren();
-
-        // 모든 섹션을 제거
         const sections = document.querySelectorAll("section");
         sections.forEach(section => {
           section.style.display = "none";
         });
 
-        // "details" 섹션이 이미 존재한다면 제거
         const existingDetailsSection = document.getElementById("details");
         if (existingDetailsSection) {
           existingDetailsSection.remove();
         }
         const targetDiv = document.getElementById("topButton");
 
-        // "details" 섹션을 생성
         const detailsSection = document.createElement("section");
         detailsSection.id = "details";
         detailsSection.className = "details";
@@ -48,7 +39,6 @@ function handleSearch(val) {
         titleBox.className = "titleBox";
         detailsSection.appendChild(titleBox);
 
-        // 제목과 뒤로가기 버튼
         const backButton = document.createElement("button");
         backButton.textContent = "메인으로";
         backButton.id = "back-to-main";
@@ -64,24 +54,20 @@ function handleSearch(val) {
         blankBox2.style = "width : 110px";
         titleBox.appendChild(blankBox2);
 
-        // 뒤로가기 버튼에 이벤트 리스너 추가
         backButton.addEventListener("click", () => {
           detailsSection.style.display = "none";
           document.getElementById("details-main").remove();
 
-          // 초기에 보여질 섹션들을 다시 보여줍니다.
           sections.forEach(section => {
             section.style.display = "block";
           });
         });
 
-        // "details-main" div를 생성하고 보여줍니다.
         const detailsMainSection = document.createElement("div");
         detailsMainSection.id = "details-main";
         detailsMainSection.className = "details-main";
         detailsSection.appendChild(detailsMainSection);
 
-        // 검색 개별데이터 카드생성
         data.results.forEach((movie, index) => {
           const title = movie.title;
           const original_title = movie.original_title;
@@ -99,8 +85,6 @@ function handleSearch(val) {
             overview,
             movie
           );
-
-          //lcContainer.appendChild(movieCard);
           document.getElementById("details-main").appendChild(movieCard);
         });
       } else {

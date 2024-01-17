@@ -1,9 +1,8 @@
 // Add scrolling functionality
-const containerDivs = document.querySelectorAll(".slider"); // 이 줄은 "slider", "next" 및 "prev" 클래스가 있는 모든 요소를 ​​선택하고 배열에 저장합니다.
+const containerDivs = document.querySelectorAll(".slider");
 const nextDivs = document.querySelectorAll(".next");
 const prevDivs = document.querySelectorAll(".prev");
-let currentIndexs = [0, 0, 0]; // 배열은 각 슬라이더의 현재 인덱스를 추적하는 데 사용됩니다. 각 인덱스는 서로 다른 슬라이더에 해당합니다.
-
+let currentIndexs = [0, 0, 0];
 for (let i = 0; i < containerDivs.length; i++) {
   nextDivs[i].addEventListener("click", () => {
     const container = containerDivs[i];
@@ -12,12 +11,11 @@ for (let i = 0; i < containerDivs.length; i++) {
       updateSlider(container, currentIndexs[i]);
     }
   });
-  // "다음" 버튼을 클릭하면 현재 인덱스가 슬라이드 수에서 2를 뺀 값보다 작은지 확인합니다. true인 경우 인덱스를 증가시키고 updateSlider를 호출합니다
 
   prevDivs[i].addEventListener("click", () => {
     const container = containerDivs[i];
     if (currentIndexs[i] > 0) {
-      currentIndexs[i] -= 1; //"prev" 버튼을 클릭하면 현재 인덱스가 0보다 큰지 확인합니다. true인 경우 인덱스를 감소시키고 updateSlider를 호출합니다
+      currentIndexs[i] -= 1;
       updateSlider(container, currentIndexs[i]);
     }
   });
@@ -26,38 +24,32 @@ for (let i = 0; i < containerDivs.length; i++) {
 // 슬라이더가 실행되도록 한다.
 function updateSlider(container, currIndex) {
   const slideWidth = container.children[0].offsetWidth;
-  const maxTranslateValue = slideWidth * (container.children.length - 2); // 특정 값
+  const maxTranslateValue = slideWidth * (container.children.length - 2);
   const newTranslateValue = -currIndex * slideWidth * 4.5;
   if (Math.abs(newTranslateValue) < maxTranslateValue) {
     container.style.transform = `translateX(${newTranslateValue}px)`;
   } else {
-    // 슬라이딩 진행하지 않게 하는 코드
     console.log("Sliding stopped!");
   }
 }
 
 function DisableWheelClick() {
-  // 특정 컨테이너 요소를 선택합니다. 아래는 ID가 'yourContainerId'인 경우입니다.
   const container = document.querySelector(".slider");
 
-  // mousedown 이벤트를 추가하여 마우스 휠 클릭을 막습니다.
+  //휠 클릭을 막습니다.
   container.addEventListener("mousedown", function (event) {
     if (event.button === 1) {
-      // 마우스 휠 클릭 버튼은 1입니다.
       event.preventDefault();
       event.stopPropagation();
     }
   });
 }
 
-// 함수 호출
-
 DisableWheelClick();
 
 // 탑 버튼 기능
 let myButton = document.getElementById("btn-back-to-top");
 
-// documet에서 20px 정도 내려가면 나타나게 해준다.
 window.onscroll = function () {
   ScrollFunction();
 };
@@ -70,7 +62,6 @@ function ScrollFunction() {
   }
 }
 
-// 버튼 클릭 시 스크롤 부드럽게
 myButton.addEventListener("click", function () {
   scrollToTop(800);
 });
@@ -141,7 +132,6 @@ function showMoviesByCategory(url, message, currentPage) {
   titleBox.className = "titleBox";
   detailsSection.appendChild(titleBox);
 
-  // 제목과 뒤로가기 버튼
   const backButton = document.createElement("button");
   backButton.textContent = "메인으로";
   backButton.id = "back-to-main";
@@ -157,18 +147,15 @@ function showMoviesByCategory(url, message, currentPage) {
   blankBox2.style = "width : 110px";
   titleBox.appendChild(blankBox2);
 
-  // 뒤로가기 버튼에 이벤트 리스너 추가
   backButton.addEventListener("click", () => {
     detailsSection.style.display = "none";
     document.getElementById("details-main").remove();
 
-    // 초기에 보여질 섹션들을 다시 보여줍니다.
     sections.forEach(section => {
       section.style.display = "block";
     });
   });
 
-  // "details-main" div를 생성하고 보여줍니다.
   const detailsMainSection = document.createElement("div");
   detailsMainSection.id = "details-main";
   detailsMainSection.className = "details-main";
@@ -177,7 +164,6 @@ function showMoviesByCategory(url, message, currentPage) {
   // 영화 카테고리를 비동기로 가져옵니다.
   MovieFetch(url, "details-main")
     .then(data => {
-      // 페이지네이션을 추가합니다.
       addPagination(
         data.total_pages,
         message,
@@ -226,7 +212,7 @@ function addPagination(totalPages, message, container, url, currentPage) {
   }
 
   // 페이지 번호
-  const maxVisiblePages = 5; // 한 화면에 보이는 페이지 번호 개수
+  const maxVisiblePages = 5;
   const startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
   const endPage = Math.min(startPage + maxVisiblePages - 1, totalPages);
 
@@ -241,7 +227,7 @@ function addPagination(totalPages, message, container, url, currentPage) {
     pageLink.href = "#";
     pageLink.textContent = i;
 
-    // 페이지를 클릭하면 해당 페이지의 영화 목록을 가져오도록 이벤트 리스너 추가
+    // 페이지를 클릭하면 해당 페이지의 영화 목록을 가져오도록
     pageLink.addEventListener("click", () => {
       const existingDetailsSection = document.getElementById("details-main");
       existingDetailsSection.innerHTML = "";
@@ -267,7 +253,6 @@ function addPagination(totalPages, message, container, url, currentPage) {
     nextButton.appendChild(nextLink);
     paginationList.appendChild(nextButton);
 
-    // 다음 버튼 클릭 이벤트 리스너 추가
     nextButton.addEventListener("click", () => {
       const existingDetailsSection = document.getElementById("details-main");
       existingDetailsSection.innerHTML = "";
