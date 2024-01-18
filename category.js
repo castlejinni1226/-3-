@@ -8,7 +8,7 @@ for (let i = 0; i < containerDivs.length; i++) {
     const container = containerDivs[i];
     if (currentIndexs[i] < container.children.length - 2) {
       currentIndexs[i] += 1;
-      updateSlider(container, currentIndexs[i]);
+      updateSlider(container, currentIndexs[i], 5);
     }
   });
 
@@ -16,16 +16,17 @@ for (let i = 0; i < containerDivs.length; i++) {
     const container = containerDivs[i];
     if (currentIndexs[i] > 0) {
       currentIndexs[i] -= 1;
-      updateSlider(container, currentIndexs[i]);
+      updateSlider(container, currentIndexs[i], 5);
     }
   });
 }
 
 // 슬라이더가 실행되도록 한다.
-function updateSlider(container, currIndex) {
-  const slideWidth = container.children[0].offsetWidth;
-  const maxTranslateValue = slideWidth * (container.children.length - 2);
-  const newTranslateValue = -currIndex * slideWidth * 4.5;
+function updateSlider(container, currIndex, numSlides) {
+  const slideWidth = container.children[0].offsetWidth * 4;
+  const maxTranslateValue = slideWidth * (numSlides - 1);
+  const newTranslateValue = -currIndex * slideWidth;
+
   if (Math.abs(newTranslateValue) < maxTranslateValue) {
     container.style.transform = `translateX(${newTranslateValue}px)`;
   } else {
@@ -33,7 +34,7 @@ function updateSlider(container, currIndex) {
   }
 }
 
-function DisableWheelClick() {
+function disableWheelClick() {
   const container = document.querySelector(".slider");
 
   //휠 클릭을 막습니다.
@@ -45,7 +46,7 @@ function DisableWheelClick() {
   });
 }
 
-DisableWheelClick();
+disableWheelClick();
 
 // 탑 버튼 기능
 let myButton = document.getElementById("btn-back-to-top");
@@ -162,7 +163,7 @@ function showMoviesByCategory(url, message, currentPage) {
   detailsSection.appendChild(detailsMainSection);
 
   // 영화 카테고리를 비동기로 가져옵니다.
-  MovieFetch(url, "details-main")
+  movieFetch(url, "details-main")
     .then(data => {
       addPagination(
         data.total_pages,

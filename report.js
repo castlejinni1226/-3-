@@ -1,7 +1,7 @@
 const options = config.options;
 
 // API 호출 함수
-function MovieFetch(url, containerId) {
+function movieFetch(url, containerId) {
   return new Promise((resolve, reject) => {
     fetch(url, options)
       .then(response => response.json())
@@ -28,17 +28,17 @@ function MovieFetch(url, containerId) {
 }
 
 // 사용 예시
-MovieFetch(
+movieFetch(
   "https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=ko-KR&page=1&region=KR&sort_by=popularity.desc&with_original_language=ko",
   "main"
 );
 
-MovieFetch(
+movieFetch(
   "https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1",
   "main2"
 );
 
-MovieFetch(
+movieFetch(
   "https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=ko-KR&page=1&sort_by=revenue.desc",
   "main3"
 );
